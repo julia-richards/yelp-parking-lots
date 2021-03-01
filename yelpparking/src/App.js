@@ -2,25 +2,38 @@ import React, { useState, useEffect } from "react";
 import Search from "./Components/Search";
 import ParkingList from "./Components/ParkingList";
 import { getParkingLots } from "./services";
+import useDebounce from "./hooks/useDebounce";
 
 function App() {
   const [location, setLocation] = useState("NYC");
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const debouncedLocation = useDebounce(location, 500);
 
   useEffect(() => {
+    if (!debouncedLocation) {
+      //skip fetch if search is blank
+      return;
+    }
+    setError();
     setIsLoading(true);
-    getParkingLots(location)
+    getParkingLots(debouncedLocation)
       .then(data => setResults(data))
       .catch(setError)
       .finally(() => setIsLoading(false));
-  }, [location]);
+  }, [debouncedLocation]);
   return (
     <>
       <h1>Find A Parking Lot</h1>
+      <Search location={location} setLocation={setLocation} />
       <div>
-        <Search />
+        {!!error && (
+          <div>
+            <h4>Oh no! An error occured.</h4>
+            <p style={{ color: "red" }}>{error.message}</p>
+          </div>
+        )}
       </div>
       <ParkingList results={results} isLoading={isLoading} />
     </>
