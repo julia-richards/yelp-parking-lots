@@ -2,6 +2,6 @@
 ## To start the app:
 1. Clone the repo
 2. Cd into yelpparking
-3. Add a .env file with REACT_APP_API_KEY=<your yelp api key>
+3. Add a .env file with REACT_APP_API_KEY=<<your yelp api key>>
 4. enter yarn start into the terminal
-**Please note that only 50 api calls are permitted every 60 minutes, changing ports by setting the .env var PORT=<new port> is a workaround
+**Please note that only 50 api calls are permitted every 60 minutes, changing ports by setting the .env var PORT=<<new port>> is a workaround
