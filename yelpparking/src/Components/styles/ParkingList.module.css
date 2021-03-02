@@ -7,11 +7,14 @@
   border: 1px solid grey;
   border-radius: 4px;
   margin-top: 1rem;
+  min-height: 150px;
 }
 
 .ParkingCard_image {
   max-width: 150px;
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  margin-right: 1rem;
+  border-radius: 10%;
 }

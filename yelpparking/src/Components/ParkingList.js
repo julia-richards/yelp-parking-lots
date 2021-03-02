@@ -20,16 +20,18 @@ const ParkingList = ({ results, isLoading }) => {
             <div>
               <h3>{result.name}</h3>
               <p>
-                {result.location.address1} {result.location.address2}
-                {result.location.city},{result.location.state}
+                {`${result.location.address1} ${result.location.address2} `}
+                {`${result.location.city}, ${result.location.state}`}
               </p>
             </div>
             <ul>
               <li>Parking Lot Score: {score.toFixed(2)}</li>
               <li>Rating: {result.rating}</li>
               <li>Number of Reviews: {result.review_count}</li>
+              <a href={result.url} target="_blank">
+                Yelp Page
+              </a>
             </ul>
-            <a href={result.url}>Yelp Page</a>
           </li>
         );
       })}

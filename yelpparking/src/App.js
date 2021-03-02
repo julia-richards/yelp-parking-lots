@@ -3,6 +3,7 @@ import Search from "./Components/Search";
 import ParkingList from "./Components/ParkingList";
 import { getParkingLots } from "./services";
 import useDebounce from "./hooks/useDebounce";
+import AppStyles from "./Components/styles/App.module.css";
 
 function App() {
   const [location, setLocation] = useState("NYC");
@@ -25,15 +26,21 @@ function App() {
   }, [debouncedLocation]);
   return (
     <>
-      <h1>Find A Parking Lot</h1>
-      <Search location={location} setLocation={setLocation} />
-      <div>
-        {!!error && (
-          <div>
-            <h4>Oh no! An error occured.</h4>
-            <p style={{ color: "red" }}>{error.message}</p>
-          </div>
-        )}
+      <div className={AppStyles.MainDiv}>
+        <h1 className={AppStyles.Title}>Find A Parking Lot</h1>
+        <Search
+          className={AppStyles.Search}
+          location={location}
+          setLocation={setLocation}
+        />
+        <div>
+          {!!error && (
+            <div>
+              <h4>Oh no! An error occured.</h4>
+              <p style={{ color: "red" }}>{error.message}</p>
+            </div>
+          )}
+        </div>
       </div>
       <ParkingList results={results} isLoading={isLoading} />
     </>
